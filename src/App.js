@@ -1,23 +1,48 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  
+  const [boxList, setBoxList] = useState([
+    { id : 1, title : '항해중'},
+    { id : 1, title : '멀미중'}
+  ])
+
+  const [title, setTitle] = useState('')
+
+
+  const titleHandler = (e) => {
+    setTitle(e.target.value)
+    console.log('input value : ' , title)
+  }
+  
+
+  const addBox = () => {
+
+    const newBox = {
+      id : boxList.length + 1,
+      title
+    }
+
+    setBoxList([...boxList, newBox])
+
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <div className='addContainer'>
+        <input type='text' value={title} onChange={titleHandler} />
+        <button onClick={addBox}>추가하기</button>
+      </div>
+        <h2>Todo List</h2>
+
+      <div className='todoBoxContainer' >
+        {boxList.map((boxList) => {
+          return <div className='todoBox' key={boxList.id}><h3>{boxList.title}</h3></div>
+        })}
+      </div>
+      
     </div>
   );
 }
