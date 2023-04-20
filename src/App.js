@@ -6,7 +6,7 @@ function App() {
   
   const [boxList, setBoxList] = useState([
     { id : 1, title : '항해중'},
-    { id : 1, title : '멀미중'}
+    { id : 2, title : '멀미중'}
   ])
 
   const [title, setTitle] = useState('')
